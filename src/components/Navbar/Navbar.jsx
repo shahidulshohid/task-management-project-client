@@ -34,7 +34,7 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">Task Management</a>
+          <Link to="/" className="btn btn-ghost text-xl">Task Management</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
