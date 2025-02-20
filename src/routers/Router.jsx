@@ -5,6 +5,7 @@ import MyTask from "../pages/MyTask/MyTask";
 import CreateProject from "../pages/CreateProject/CreateProject";
 import CreateProjectTwo from "../pages/CreateProject/CreateProjectTwo";
 import LoginPage from "../pages/LoginPage/LoginPage";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path:'/',
-                element:<HomePage></HomePage>
+                element:<PrivateRoute><HomePage></HomePage></PrivateRoute>
             },
             {
                 path:'/myTask',
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
                 element:<CreateProjectTwo></CreateProjectTwo>
             },
             {
-                path:'login',
+                path:'/login',
                 element:<LoginPage></LoginPage>
             }
         ]
