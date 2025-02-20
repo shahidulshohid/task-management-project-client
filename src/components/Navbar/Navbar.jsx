@@ -1,6 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const {logOut} = useAuth()
   return (
     <div className="w-11/12 mx-auto sticky top-0 z-50">
       <div className="navbar bg-base-100">
@@ -47,7 +49,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <button className="bg-[#4A00FF] px-4 py-2 rounded-lg text-white text-lg">Logout</button>
+          <button onClick={logOut} className="bg-[#4A00FF] px-4 py-2 rounded-lg text-white text-lg">Logout</button>
         </div>
       </div>
     </div>
