@@ -6,6 +6,7 @@ import CreateProject from "../pages/CreateProject/CreateProject";
 import CreateProjectTwo from "../pages/CreateProject/CreateProjectTwo";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import PrivateRoute from "./PrivateRoute";
+import SignUpPage from "../pages/SignUpPage/SignUpPage";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             {
                 path:'/login',
                 element:<LoginPage></LoginPage>
+            },
+            {
+                path:'/singUp',
+                element:<SignUpPage></SignUpPage>
             }
         ]
     }
