@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div>
+    <div className="w-11/12 mx-auto sticky top-0 z-50">
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -34,20 +34,20 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost text-xl">Task Management</Link>
+          <Link to="/" className="btn btn-ghost text-xl md:text-3xl">Task Management</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li className="px-2">
+            <li className="px-2 text-lg font-semibold">
               <NavLink to="/">Home</NavLink>
             </li>
-            <li className="px-2">
+            <li className="px-2 text-lg font-semibold">
               <NavLink to='/myTask'>My Task</NavLink>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <button className="bg-[#4A00FF] px-4 py-2 rounded-lg text-white text-lg">Logout</button>
         </div>
       </div>
     </div>
