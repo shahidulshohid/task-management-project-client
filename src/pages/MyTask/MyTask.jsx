@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { HiOutlinePlusSm } from "react-icons/hi";
+import { toast } from "react-toastify";
 
 const MyTask = () => {
   const [showAddButton, setShowAddButton] = useState(false);
@@ -17,10 +18,12 @@ const MyTask = () => {
 
   const handleTaskSubmit = () => {
     if (taskTitle.trim() === "") {
-      alert("টাস্কের টাইটেল দিতে হবে!");
+      toast.error("Task title cannot be empty", {
+        position: "top-center",
+      })
       return;
     }
-    console.log("নতুন টাস্ক:", taskTitle);
+    console.log(taskTitle);
     setTaskTitle(""); 
     setShowInputField(false); 
   };
@@ -44,7 +47,7 @@ const MyTask = () => {
         {showAddButton && !showInputField && (
           <button 
             onClick={handleAddTaskClick} 
-            className="flex items-center mt-2"
+            className="flex items-center mt-2 px-2 py-1 bg-[#4A00FF] text-white rounded"
           >
             <HiOutlinePlusSm size={20} /> Add Task
           </button>
@@ -62,9 +65,9 @@ const MyTask = () => {
             />
             <button 
               onClick={handleTaskSubmit} 
-              className="mt-2"
+              className="flex items-center mt-2 px-2 py-1 bg-[#4A00FF] text-white rounded"
             >
-              Save Task
+             <HiOutlinePlusSm size={20} /> Add Task
             </button>
           </div>
         )}
