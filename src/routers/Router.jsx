@@ -4,6 +4,7 @@ import HomePage from "../pages/HomePage/HomePage";
 import MyTask from "../pages/MyTask/MyTask";
 import CreateProject from "../pages/CreateProject/CreateProject";
 import CreateProjectTwo from "../pages/CreateProject/CreateProjectTwo";
+import LoginPage from "../pages/LoginPage/LoginPage";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
                 path:'/createProjectTwo',
                 element:<CreateProjectTwo></CreateProjectTwo>
             },
+            {
+                path:'login',
+                element:<LoginPage></LoginPage>
+            }
         ]
     }
 ])
