@@ -1,9 +1,20 @@
 
 import { toast } from "react-toastify";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const AddTask = () => {
     const axiosPublic = useAxiosPublic()
+
+    const { data: users } = useQuery({
+        queryKey: ["users"],
+        queryFn: async () => {
+          const res = await axiosPublic("/users");
+          return res.data;
+        },
+      });
+      
+
     const handleAddTask = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -11,12 +22,14 @@ const AddTask = () => {
         const description = form.description.value;
         const category = form.category.value;
         const date = new Date().toLocaleString();
+        const userId = users.userId
     
         const addTaskInfo = {
           title,
           description,
           category,
           date,
+          userId
         };
         // send data to database 
         axiosPublic.post('/addTask', addTaskInfo)
