@@ -1,13 +1,29 @@
 import { FaGoogle } from "react-icons/fa6";
 import { FiGithub } from "react-icons/fi";
 import useAuth from "../../hooks/useAuth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 const LoginPage = () => {
+  const axiosPublic = useAxiosPublic()
   const navigate = useNavigate();
+  const location = useLocation()
   const { signInWithGoogle } = useAuth();
   const handleGoogleLogin = () => {
-    signInWithGoogle();
-    navigate("/");
+    signInWithGoogle().then((result) => {
+      const userInfo = {
+        userId: result.user.uid,
+        email: result.user.email,
+        displayName: result.user.displayName,
+      };
+      axiosPublic.post("/users", userInfo).then((res) => {
+
+        if (location.state) {
+          navigate(location.state.from);
+        } else {
+          navigate("/");
+        }
+      });
+    });
   };
   return (
     <div className="md:w-4/5 lg:w-1/2 mx-auto my-12">

@@ -10,12 +10,13 @@ const AddTask = () => {
         const title = form.title.value;
         const description = form.description.value;
         const category = form.category.value;
-        console.log(title, description, category)
+        const date = new Date().toLocaleString();
     
         const addTaskInfo = {
           title,
           description,
-          category
+          category,
+          date,
         };
         // send data to database 
         axiosPublic.post('/addTask', addTaskInfo)
