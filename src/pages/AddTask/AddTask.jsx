@@ -1,4 +1,29 @@
+import axios from "axios";
+
 const AddTask = () => {
+    const handleAddTask = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const title = form.title.value;
+        const description = form.description.value;
+        const category = form.category.value;
+        console.log(title, description, category)
+    
+        const addTaskInfo = {
+          title,
+          description,
+          category
+        };
+        // send data to database 
+        axios.post('/addTask', addTaskInfo)
+        .then(res => {
+            if(res.data.insertedId){
+                toast.success("Add Task is successfully", {
+                    position: "top-center",
+                  });
+            }
+        })
+      };
   return (
     <div className="my-12">
       <h3 className="text-3xl md:text-4xl font-bold text-center text-purple-500">
@@ -6,13 +31,14 @@ const AddTask = () => {
       </h3>
       <div className="md:w-4/5 lg:w-1/2 mx-auto">
         <div className="card w-full shrink-0">
-          <form className="card-body">
+          <form onSubmit={handleAddTask} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Title</span>
               </label>
               <input
                 type="text"
+                name="title"
                 placeholder="Title"
                 className="input input-bordered"
                 required
@@ -23,10 +49,10 @@ const AddTask = () => {
                 <label className="label" htmlFor="role">
                   Category
                 </label>
-                <select name="role" className="border p-3 rounded-md bg-white">
-                  <option value="student">To-Do</option>
-                  <option value="tutor">Inprogress</option>
-                  <option value="admin">Done</option>
+                <select name="category" className="border p-3 rounded-md bg-white">
+                  <option value="ToDo">To-Do</option>
+                  <option value="InProgress">Inprogress</option>
+                  <option value="done">Done</option>
                 </select>
               </div>
             </div>
@@ -37,6 +63,7 @@ const AddTask = () => {
               <input
                 type="text"
                 placeholder="Description"
+                name="description"
                 className="input input-bordered"
                 required
               />
@@ -53,4 +80,4 @@ const AddTask = () => {
   );
 };
 
-export default AddTask;
+export default AddTask
