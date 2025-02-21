@@ -1,6 +1,9 @@
-import axios from "axios";
+
+import { toast } from "react-toastify";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const AddTask = () => {
+    const axiosPublic = useAxiosPublic()
     const handleAddTask = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -15,12 +18,12 @@ const AddTask = () => {
           category
         };
         // send data to database 
-        axios.post('/addTask', addTaskInfo)
+        axiosPublic.post('/addTask', addTaskInfo)
         .then(res => {
             if(res.data.insertedId){
-                toast.success("Add Task is successfully", {
-                    position: "top-center",
-                  });
+                toast.success('Task Added successfully', {
+                    position: "top-center"
+                })
             }
         })
       };
