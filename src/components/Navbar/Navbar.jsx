@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
-  const {logOut} = useAuth()
+  const { logOut } = useAuth();
   return (
     <div className="w-11/12 mx-auto sticky top-0 z-50">
       <div className="navbar bg-base-100">
@@ -28,28 +28,41 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
-              <li className="px-2">
+              {/* <li className="px-2">
                 <NavLink to="/">Home</NavLink>
+              </li> */}
+              <li className="px-2 text-lg font-semibold">
+                <NavLink to="/addTAsk">Add Task</NavLink>
               </li>
-              <li className="px-2">
-                <NavLink to='/myTask'>My Task</NavLink>
+              <li className="px-2 text-lg font-semibold">
+                <NavLink to="/myTask">My Task</NavLink>
               </li>
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost text-xl md:text-3xl">Task Management</Link>
+          <Link to="/" className="btn btn-ghost text-xl md:text-3xl">
+            Task Management
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li className="px-2 text-lg font-semibold">
+            {/* <li className="px-2 text-lg font-semibold">
               <NavLink to="/">Home</NavLink>
+            </li> */}
+            <li className="px-2 text-lg font-semibold">
+              <NavLink to="/addTAsk">Add Task</NavLink>
             </li>
             <li className="px-2 text-lg font-semibold">
-              <NavLink to='/myTask'>My Task</NavLink>
+              <NavLink to="/myTask">My Task</NavLink>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
-          <button onClick={logOut} className="bg-[#4A00FF] px-4 py-2 rounded-lg text-white text-lg">Logout</button>
+          <button
+            onClick={logOut}
+            className="bg-[#4A00FF] px-4 py-2 rounded-lg text-white text-lg"
+          >
+            Logout
+          </button>
         </div>
       </div>
     </div>
