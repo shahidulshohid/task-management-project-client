@@ -3,11 +3,42 @@ import useAuth from "../../hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useEffect } from "react";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 const LoginPage = () => {
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
-  const { signInWithGoogle } = useAuth();
+  const { signInWithGoogle, signIn } = useAuth();
+  
+  const handleSignIn = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signIn(email, password)
+      .then((res) => {
+        Swal.fire({
+          title: "Login Successfully!",
+          text: "Task has been deleted.",
+          icon: "success",
+        });
+
+        if (location.state) {
+          navigate(location.state.from);
+        } else {
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        toast.error(error.code, {
+          position: "top-center",
+        });
+      });
+  };
+
   const handleGoogleLogin = () => {
     signInWithGoogle().then((result) => {
       const userInfo = {
@@ -48,13 +79,14 @@ const LoginPage = () => {
         </div>
       </div>
       <div className="card w-full  shrink-0">
-        <form className="card-body">
+        <form onSubmit={handleSignIn} className="card-body">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
             </label>
             <input
               type="email"
+              name="email"
               placeholder="email"
               className="input input-bordered"
               required
@@ -66,6 +98,7 @@ const LoginPage = () => {
             </label>
             <input
               type="password"
+              name="password"
               placeholder="password"
               className="input input-bordered"
               required
