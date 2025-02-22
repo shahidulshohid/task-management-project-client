@@ -1,46 +1,37 @@
-
 import { toast } from "react-toastify";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../hooks/useAuth";
 
 const AddTask = () => {
-    const axiosPublic = useAxiosPublic()
+  const {user} = useAuth()
+  const axiosPublic = useAxiosPublic();
 
-    const { data: users } = useQuery({
-        queryKey: ["users"],
-        queryFn: async () => {
-          const res = await axiosPublic("/users");
-          return res.data;
-        },
-      });
-      
 
-    const handleAddTask = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const title = form.title.value;
-        const description = form.description.value;
-        const category = form.category.value;
-        const date = new Date().toLocaleString();
-        const userId = users.userId
-    
-        const addTaskInfo = {
-          title,
-          description,
-          category,
-          date,
-          userId
-        };
-        // send data to database 
-        axiosPublic.post('/addTask', addTaskInfo)
-        .then(res => {
-            if(res.data.insertedId){
-                toast.success('Task Added successfully', {
-                    position: "top-center"
-                })
-            }
-        })
-      };
+  const handleAddTask = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const title = form.title.value;
+    const description = form.description.value;
+    const category = form.category.value;
+    const date = new Date().toLocaleString();
+    const email = user?.email
+
+    const addTaskInfo = {
+      title,
+      description,
+      category,
+      date,
+      email,
+    };
+    // send data to database
+    axiosPublic.post("/addTask", addTaskInfo).then((res) => {
+      if (res.data.insertedId) {
+        toast.success("Task Added successfully", {
+          position: "top-center",
+        });
+      }
+    });
+  };
   return (
     <div className="my-12">
       <h3 className="text-3xl md:text-4xl font-bold text-center text-purple-500">
@@ -66,10 +57,13 @@ const AddTask = () => {
                 <label className="label" htmlFor="role">
                   Category
                 </label>
-                <select name="category" className="border p-3 rounded-md bg-white">
+                <select
+                  name="category"
+                  className="border p-3 rounded-md bg-white"
+                >
                   <option value="ToDo">To-Do</option>
                   <option value="InProgress">Inprogress</option>
-                  <option value="done">Done</option>
+                  <option value="Done">Done</option>
                 </select>
               </div>
             </div>
@@ -97,4 +91,4 @@ const AddTask = () => {
   );
 };
 
-export default AddTask
+export default AddTask;

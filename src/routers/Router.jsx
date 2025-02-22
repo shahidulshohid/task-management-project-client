@@ -2,10 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../mainLayout/MainLayout";
 // import HomePage from "../pages/HomePage/HomePage";
 import MyTask from "../pages/MyTask/MyTask";
-// import CreateProject from "../pages/CreateProject/CreateProject";
-// import CreateProjectTwo from "../pages/CreateProject/CreateProjectTwo";
 import LoginPage from "../pages/LoginPage/LoginPage";
-// import PrivateRoute from "./PrivateRoute";
+import PrivateRoute from "./PrivateRoute";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import AddTask from "../pages/AddTask/AddTask";
 
@@ -20,7 +18,7 @@ const router = createBrowserRouter([
             // },
             {
                 path:'/addTask',
-                element:<AddTask></AddTask>
+                element:<PrivateRoute><AddTask></AddTask></PrivateRoute>
             },
             {
                 path:'/myTask',
