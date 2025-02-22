@@ -7,11 +7,13 @@ import PrivateRoute from "./PrivateRoute";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import AddTask from "../pages/AddTask/AddTask";
 import UpdateTask from "../pages/UpdateTask/UpdateTask";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path:'/',
         element:<MainLayout></MainLayout>,
+        errorElement:<ErrorPage></ErrorPage>,
         children: [
             {
                 path:'/',

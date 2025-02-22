@@ -1,5 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { FaTasks } from "react-icons/fa";
+import { IoMdAdd } from "react-icons/io";
+import { TbHomeStar } from "react-icons/tb";
+import { RiLogoutCircleLine } from "react-icons/ri";
 
 const Navbar = () => {
   const { logOut } = useAuth();
@@ -28,14 +32,14 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
-              {/* <li className="px-2">
-                <NavLink to="/">Home</NavLink>
-              </li> */}
-              <li className="px-2 text-lg font-semibold">
-                <NavLink to="/addTAsk">Add Task</NavLink>
+              <li className="px-2">
+                <NavLink to="/"><TbHomeStar />Home</NavLink>
               </li>
               <li className="px-2 text-lg font-semibold">
-                <NavLink to="/myTask">My Task</NavLink>
+                <NavLink to="/addTAsk"><IoMdAdd />Add Task</NavLink>
+              </li>
+              <li className="px-2 text-lg font-semibold">
+                <NavLink to="/myTask"><FaTasks />My Task</NavLink>
               </li>
             </ul>
           </div>
@@ -45,23 +49,23 @@ const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            {/* <li className="px-2 text-lg font-semibold">
-              <NavLink to="/">Home</NavLink>
-            </li> */}
             <li className="px-2 text-lg font-semibold">
-              <NavLink to="/addTAsk">Add Task</NavLink>
+              <NavLink to="/"><TbHomeStar />Home</NavLink>
             </li>
             <li className="px-2 text-lg font-semibold">
-              <NavLink to="/myTask">My Task</NavLink>
+              <NavLink to="/addTAsk"><IoMdAdd size={20}/>Add Task</NavLink>
+            </li>
+            <li className="px-2 text-lg font-semibold">
+              <NavLink to="/myTask"><FaTasks />My Task</NavLink>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
           <button
             onClick={logOut}
-            className="bg-[#4A00FF] px-4 py-2 rounded-lg text-white text-lg"
+            className="bg-[#4A00FF] px-4 py-2 rounded-lg text-white text-lg flex items-center gap-2"
           >
-            Logout
+            <RiLogoutCircleLine className="mt-1" />Logout
           </button>
         </div>
       </div>

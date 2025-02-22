@@ -80,7 +80,7 @@ const MyTask = () => {
                 <h3 className="text-2xl font-semibold text-blue-600">
                   {task.title}
                 </h3>
-                <p className="text-gray-600 text-sm font-semibold my-2">
+                <p className="text-gray-600 text-lg font-semibold my-2">
                   {task.description}
                 </p>
                 <p className="text-gray-600 text-sm font-semibold my-2">
@@ -92,14 +92,14 @@ const MyTask = () => {
                 <div className="mt-4 flex items-center gap-5 justify-center">
                   <Link to={`/updateTask/${task._id}`}>
                     <button className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
-                      <FaRegEdit size={15} />
+                      <FaRegEdit size={20} />
                     </button>
                   </Link>
                   <button
                     onClick={() => handleDelete(task._id)}
                     className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out"
                   >
-                    <MdOutlineDelete size={16} />
+                    <MdOutlineDelete size={20} />
                   </button>
                 </div>
               </div>
@@ -121,7 +121,7 @@ const MyTask = () => {
                 <h3 className="text-2xl font-semibold text-blue-600">
                   {task.title}
                 </h3>
-                <p className="text-gray-600 text-sm font-semibold my-2">
+                <p className="text-gray-600 text-lg font-semibold my-2">
                   {task.description}
                 </p>
                 <p className="text-gray-600 text-sm font-semibold my-2">
@@ -133,14 +133,14 @@ const MyTask = () => {
                 <div className="mt-4 flex items-center gap-5 justify-center">
                   <Link to={`/updateTask/${task._id}`}>
                     <button className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
-                      <FaRegEdit size={15} />
+                      <FaRegEdit size={20} />
                     </button>
                   </Link>
                   <button
                     onClick={() => handleDelete(task._id)}
                     className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out"
                   >
-                    <MdOutlineDelete size={16} />
+                    <MdOutlineDelete size={20} />
                   </button>
                 </div>
               </div>
@@ -162,7 +162,7 @@ const MyTask = () => {
                 <h3 className="text-2xl font-semibold text-blue-600">
                   {task.title}
                 </h3>
-                <p className="text-gray-600 text-sm font-semibold my-2">
+                <p className="text-gray-600 text-lg font-semibold my-2">
                   {task.description}
                 </p>
                 <p className="text-gray-600 text-sm font-semibold my-2">
@@ -174,14 +174,14 @@ const MyTask = () => {
                 <div className="mt-4 flex items-center gap-5 justify-center">
                   <Link to={`/updateTask/${task._id}`}>
                     <button className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
-                      <FaRegEdit size={15} />
+                      <FaRegEdit size={20} />
                     </button>
                   </Link>
                   <button
                     onClick={() => handleDelete(task._id)}
                     className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out"
                   >
-                    <MdOutlineDelete size={16} />
+                    <MdOutlineDelete size={20} />
                   </button>
                 </div>
               </div>
