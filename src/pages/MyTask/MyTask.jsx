@@ -70,7 +70,7 @@ const MyTask = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5">
         {/* To-Do Column */}
         <div className="text-center text-2xl md:text-3xl font-semibold bg-gray-200 p-4">
-          <h2 className="text-xl font-semibold text-gray-700 mb-4">To-Do</h2>
+          <h2>To-Do</h2>
           {toDoTasks.length > 0 ? (
             toDoTasks.map((task) => (
               <div

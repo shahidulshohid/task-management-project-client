@@ -11,6 +11,10 @@ const LoginPage = () => {
   const location = useLocation();
   const { signInWithGoogle, signIn } = useAuth();
   
+  useEffect(() => {
+    window.document.title = "Login page" || "Task Management";
+  }, []);
+
   const handleSignIn = (e) => {
     e.preventDefault();
 
@@ -47,12 +51,12 @@ const LoginPage = () => {
         displayName: result.user.displayName,
       };
       axiosPublic.post("/users", userInfo).then((res) => {
+        Swal.fire({
+          title: "Login Successfully!",
+          text: "Task has been deleted.",
+          icon: "success",
+        });
         if (location.state) {
-          Swal.fire({
-            title: "Login Successfully!",
-            text: "Task has been deleted.",
-            icon: "success",
-          });
           navigate(location.state.from);
         } else {
           navigate("/");
@@ -60,9 +64,6 @@ const LoginPage = () => {
       });
     });
   };
-  useEffect(() => {
-    window.document.title = "Login page" || "Task Management";
-  }, []);
   return (
     <div className="md:w-4/5 lg:w-1/2 mx-auto my-12">
       <h2 className="text-2xl md:text-4xl font-bold text-purple-500 text-center">
