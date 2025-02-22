@@ -1,8 +1,37 @@
-# React + Vite
+# Task Management Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Short Description
+This is a task management website designed to help users organize, track, and manage their tasks efficiently. Users can create, update, delete, and prioritize tasks, and categorize tasks into projects or lists. The website provides a user-friendly interface for seamless task management.
 
-Currently, two official plugins are available:
+## Live Links
+- *Website URL:* [Task Management Website](https://solosphere-templete.web.app/) 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Dependencies
+To run this project locally, ensure you have the following installed:  
+- *Node.js* 
+- *npm* 
+- *MongoDB* 
+
+## Technologies Used
+
+### Frontend:
+- *HTML, CSS, JavaScript*
+- *React.js* 
+- *Tailwind CSS* 
+
+### Backend:
+- *Node.js*
+- *Express.js*
+- *MongoDB* 
+
+### Authentication:
+- *Firebase* 
+
+### Deploy:
+- *Firebase* 
+- *vercel* 
+
+### Other Tools:
+- *Git* 
+- *npm*
