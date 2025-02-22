@@ -7,6 +7,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import LoadingPage from "../LoadingPage/LoadingPage";
 
 const MyTask = () => {
   const { user } = useAuth();
@@ -61,7 +62,7 @@ const MyTask = () => {
     });
   };
 
-  if (isLoading) return <p className="text-center text-xl">Loading tasks...</p>;
+  if (isLoading) return <LoadingPage></LoadingPage>;
   return (
     <div className="my-12">
       <h1 className="text-2xl md:text-3xl text-center mb-5 font-semibold text-purple-500">
