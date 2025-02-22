@@ -1,23 +1,49 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateTask = () => {
-    const axiosPublic = useAxiosPublic()
-    const {id} = useParams()
-    const {data: updateTAsk = {}, refetch } = useQuery({
-        queryKey: ["updateTAsk", id],
-        queryFn: async () => {
-          const res = await axiosPublic(`/tasksOne/${id}`);
-          return res.data;
-        },
-      });
-    console.log(updateTAsk)
-    const handleUpdateTask = (e) => {
-        e.preventDefault()
-    }
-    return (
-        <div className="my-12">
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate()
+  const { id } = useParams();
+  const { data: updateTAsk = {}, refetch } = useQuery({
+    queryKey: ["updateTAsk", id],
+    queryFn: async () => {
+      const res = await axiosPublic(`/tasksOne/${id}`);
+      return res.data;
+    },
+  });
+  console.log(updateTAsk);
+  const handleUpdateTask = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const title = form.title.value;
+    const description = form.description.value;
+    const category = form.category.value;
+    const date = new Date().toLocaleString();
+    console.log(title, description, category, date);
+
+    const updateTaskInfo = {
+      title,
+      description,
+      category,
+      date,
+    };
+    axiosPublic.patch(`/tasksUpdate/${id}`, updateTaskInfo).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          title: "Deleted!",
+          text: "User has been deleted.",
+          icon: "success",
+        });
+        navigate('/myTask')
+      }
+    });
+  };
+  return (
+    <div className="my-12">
       <h3 className="text-3xl md:text-4xl font-bold text-center text-purple-500">
         Update Task
       </h3>
@@ -68,14 +94,14 @@ const UpdateTask = () => {
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary text-lg text-white">
-              Update Task
+                Update Task
               </button>
             </div>
           </form>
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default UpdateTask;

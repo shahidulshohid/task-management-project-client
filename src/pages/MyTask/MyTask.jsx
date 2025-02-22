@@ -75,6 +75,9 @@ const MyTask = () => {
                 <p className="text-gray-600 text-sm font-semibold my-2">
                   {task.description}
                 </p>
+                <p className="text-gray-600 text-sm font-semibold my-2">
+                  {task.category}
+                </p>
                 <p className="text-gray-400 text-sm font-semibold">
                   {new Date(task.date).toLocaleDateString()}
                 </p>
@@ -113,6 +116,9 @@ const MyTask = () => {
                 <p className="text-gray-600 text-sm font-semibold my-2">
                   {task.description}
                 </p>
+                <p className="text-gray-600 text-sm font-semibold my-2">
+                  {task.category}
+                </p>
                 <p className="text-gray-400 text-sm font-semibold">
                   {new Date(task.date).toLocaleDateString()}
                 </p>
@@ -150,6 +156,9 @@ const MyTask = () => {
                 </h3>
                 <p className="text-gray-600 text-sm font-semibold my-2">
                   {task.description}
+                </p>
+                <p className="text-gray-600 text-sm font-semibold my-2">
+                  {task.category}
                 </p>
                 <p className="text-gray-400 text-sm font-semibold">
                   {new Date(task.date).toLocaleDateString()}
