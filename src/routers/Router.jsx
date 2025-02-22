@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../mainLayout/MainLayout";
-// import HomePage from "../pages/HomePage/HomePage";
+import HomePage from "../pages/HomePage/HomePage";
 import MyTask from "../pages/MyTask/MyTask";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import PrivateRoute from "./PrivateRoute";
@@ -13,17 +13,17 @@ const router = createBrowserRouter([
         path:'/',
         element:<MainLayout></MainLayout>,
         children: [
-            // {
-            //     path:'/',
-            //     element:<PrivateRoute><HomePage></HomePage></PrivateRoute>
-            // },
+            {
+                path:'/',
+                element:<HomePage></HomePage>
+            },
             {
                 path:'/addTask',
                 element:<PrivateRoute><AddTask></AddTask></PrivateRoute>
             },
             {
                 path:'/myTask',
-                element:<MyTask></MyTask>
+                element:<PrivateRoute><MyTask></MyTask></PrivateRoute>
             },
             {
                 path:'/updateTask/:id',
