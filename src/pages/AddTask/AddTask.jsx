@@ -1,11 +1,12 @@
-import { toast } from "react-toastify";
+
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAuth from "../../hooks/useAuth";
+import { useEffect } from "react";
+import Swal from "sweetalert2";
 
 const AddTask = () => {
-  const {user} = useAuth()
+  const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
-
 
   const handleAddTask = (e) => {
     e.preventDefault();
@@ -14,7 +15,7 @@ const AddTask = () => {
     const description = form.description.value;
     const category = form.category.value;
     const date = new Date().toLocaleString();
-    const email = user?.email
+    const email = user?.email;
 
     const addTaskInfo = {
       title,
@@ -26,12 +27,17 @@ const AddTask = () => {
     // send data to database
     axiosPublic.post("/addTask", addTaskInfo).then((res) => {
       if (res.data.insertedId) {
-        toast.success("Task Added successfully", {
-          position: "top-center",
+        Swal.fire({
+          title: "Added!",
+          text: "Task has been added.",
+          icon: "success",
         });
       }
     });
   };
+  useEffect(() => {
+    window.document.title = "Add Task page" || "Task Management";
+  }, []);
   return (
     <div className="my-12">
       <h3 className="text-3xl md:text-4xl font-bold text-center text-purple-500">

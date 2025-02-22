@@ -1,9 +1,10 @@
+
+import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAuth from "../../hooks/useAuth";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
-import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
@@ -22,6 +23,11 @@ const MyTask = () => {
       return res.data;
     },
   });
+
+  
+  useEffect(() => {
+    window.document.title = "My Task page" || "Task Management";
+  }, []);
 
   // Filter tasks into categories
   const toDoTasks = tasks.filter((task) => task.category === "ToDo");
@@ -46,7 +52,7 @@ const MyTask = () => {
             refetch();
             Swal.fire({
               title: "Deleted!",
-              text: "User has been deleted.",
+              text: "Task has been deleted.",
               icon: "success",
             });
           }
@@ -56,12 +62,14 @@ const MyTask = () => {
   };
 
   if (isLoading) return <p className="text-center text-xl">Loading tasks...</p>;
-
   return (
     <div className="my-12">
+      <h1 className="text-2xl md:text-3xl text-center mb-5 font-semibold text-purple-500">
+        My Task
+      </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5">
         {/* To-Do Column */}
-        <div className="text-center text-2xl md:text-3xl font-semibold bg-gray-200 p-4 max-h-screen">
+        <div className="text-center text-2xl md:text-3xl font-semibold bg-gray-200 p-4">
           <h2 className="text-xl font-semibold text-gray-700 mb-4">To-Do</h2>
           {toDoTasks.length > 0 ? (
             toDoTasks.map((task) => (
@@ -97,12 +105,12 @@ const MyTask = () => {
               </div>
             ))
           ) : (
-            <p className="text-gray-500 text-sm mt-2">No tasks found</p>
+            <p className="text-gray-500 text-2xl mt-2">No tasks found</p>
           )}
         </div>
 
         {/* In Progress Column */}
-        <div className="text-center text-2xl md:text-3xl font-semibold bg-gray-200 p-4 max-h-screen">
+        <div className="text-center text-2xl md:text-3xl font-semibold bg-gray-200 p-4">
           <h2>In Progress</h2>
           {inProgressTasks.length > 0 ? (
             inProgressTasks.map((task) => (
@@ -138,12 +146,12 @@ const MyTask = () => {
               </div>
             ))
           ) : (
-            <p className="text-gray-500 text-sm mt-2">No tasks found</p>
+            <p className="text-gray-500 text-2xl mt-2">No tasks found</p>
           )}
         </div>
 
         {/* Done Column */}
-        <div className="text-center text-2xl md:text-3xl font-semibold bg-gray-200 p-4 max-h-screen">
+        <div className="text-center text-2xl md:text-3xl font-semibold bg-gray-200 p-4">
           <h2>Done</h2>
           {doneTasks.length > 0 ? (
             doneTasks.map((task) => (
@@ -179,7 +187,7 @@ const MyTask = () => {
               </div>
             ))
           ) : (
-            <p className="text-gray-500 text-sm mt-2">No tasks found</p>
+            <p className="text-gray-500 text-2xl mt-2">No tasks found</p>
           )}
         </div>
       </div>

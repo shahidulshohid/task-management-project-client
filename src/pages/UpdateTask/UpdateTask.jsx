@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useEffect } from "react";
 
 const UpdateTask = () => {
   const axiosPublic = useAxiosPublic();
@@ -34,14 +35,17 @@ const UpdateTask = () => {
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
-          title: "Deleted!",
-          text: "User has been deleted.",
+          title: "Updated!",
+          text: "Task has been Update.",
           icon: "success",
         });
         navigate('/myTask')
       }
     });
   };
+  useEffect(() => {
+      window.document.title = "Update Task page" || "Task Management";
+    }, []);
   return (
     <div className="my-12">
       <h3 className="text-3xl md:text-4xl font-bold text-center text-purple-500">
