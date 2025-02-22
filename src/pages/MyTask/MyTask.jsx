@@ -4,13 +4,18 @@ import useAuth from "../../hooks/useAuth";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyTask = () => {
   const { user } = useAuth();
-  console.log(user?.email);
   const axiosPublic = useAxiosPublic();
   // Fetch tasks
-  const { data: tasks = [], isLoading, refetch } = useQuery({
+  const {
+    data: tasks = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["tasks", user?.email],
     queryFn: async () => {
       const res = await axiosPublic(`/tasks?email=${user?.email}`);
@@ -18,7 +23,6 @@ const MyTask = () => {
     },
   });
 
-  console.log(tasks);
   // Filter tasks into categories
   const toDoTasks = tasks.filter((task) => task.category === "ToDo");
   const inProgressTasks = tasks.filter(
@@ -27,12 +31,26 @@ const MyTask = () => {
   const doneTasks = tasks.filter((task) => task.category === "Done");
 
   const handleDelete = async (id) => {
-    axiosPublic.delete(`/tasks/${id}`).then((res) => {
-      if (res.data.deletedCount > 0) {
-        refetch();
-        toast.success('Task deleted successfully', {
-          position: 'top-center'
-        })
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic.delete(`/tasks/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "User has been deleted.",
+              icon: "success",
+            });
+          }
+        });
       }
     });
   };
@@ -61,9 +79,11 @@ const MyTask = () => {
                   {new Date(task.date).toLocaleDateString()}
                 </p>
                 <div className="mt-4 flex items-center gap-5 justify-center">
-                  <button className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
-                    <FaRegEdit size={15} />
-                  </button>
+                  <Link to={`/updateTask/${task._id}`}>
+                    <button className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
+                      <FaRegEdit size={15} />
+                    </button>
+                  </Link>
                   <button
                     onClick={() => handleDelete(task._id)}
                     className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out"
@@ -97,9 +117,11 @@ const MyTask = () => {
                   {new Date(task.date).toLocaleDateString()}
                 </p>
                 <div className="mt-4 flex items-center gap-5 justify-center">
-                  <button className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
-                    <FaRegEdit size={15} />
-                  </button>
+                  <Link to={`/updateTask/${task._id}`}>
+                    <button className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
+                      <FaRegEdit size={15} />
+                    </button>
+                  </Link>
                   <button
                     onClick={() => handleDelete(task._id)}
                     className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out"
@@ -133,9 +155,11 @@ const MyTask = () => {
                   {new Date(task.date).toLocaleDateString()}
                 </p>
                 <div className="mt-4 flex items-center gap-5 justify-center">
-                  <button className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
-                    <FaRegEdit size={15} />
-                  </button>
+                  <Link to={`/updateTask/${task._id}`}>
+                    <button className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
+                      <FaRegEdit size={15} />
+                    </button>
+                  </Link>
                   <button
                     onClick={() => handleDelete(task._id)}
                     className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out"
